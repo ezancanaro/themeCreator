@@ -1,0 +1,82 @@
+.popup {
+    max-width: 40vw;
+    position: absolute;
+    align-self: center;
+    background: lightgrey;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+.fechar{
+    width: 1.5em;
+    height: 1.5em;
+    position: absolute;
+    top: 0.5em; 
+    right: 0.3em; 
+    stroke: darkorchid;
+}
+
+.popup-main {
+    border-radius: 5px;
+    height: 100%;
+    max-height: 540px;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+@media screen and ( min-height: 1080px ){
+    .popup-main{
+        max-height: 1020px;
+    }
+}
+
+.display-block {
+    display: block;
+}
+
+.display-none {
+    display: none;
+}
+
+.popup .formTitle {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--fundo-principal);
+}
+
+.popup .formTitle .titleText {
+    text-align: center;
+    color: white;
+    margin: auto;
+    cursor: default;
+}
+
+.popup .formTitle .popup-button {
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    margin: 2px;
+    color: var(--fonte-secundaria);
+    border: 1px solid var(--border-terciaria);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.popup .formTitle .popup-button:hover {
+    color: var(--popup-close-button-font);
+    border: 1px solid var(--popup-close-button-border);
+    background-color: var(--popup-close-button-background);
+}

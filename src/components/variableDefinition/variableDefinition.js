@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { SvgArrow } from '../../svgs.js';
 
-export default function VariableDefinition({variable, onClickColor}) {
-    
+import './variableDefinition.css';
+
+export default function VariableDefinition({ variable, onClickColor }) {
+
+    const [show, setShow] = useState(true);
+    const [warning, setWarning] = useState('');
+
     const getColorHexCode = (color) => {
         let ctx = document.createElement("canvas").getContext("2d");
         ctx.fillStyle = color;
@@ -39,29 +44,68 @@ export default function VariableDefinition({variable, onClickColor}) {
         r = parseInt(r, 16);
         g = parseInt(g, 16);
         b = parseInt(b, 16);
-        a = parseFloat(a, 16) / 256.0;
-        return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+        a = parseInt(a, 16) / 255.0;
+        return { red: r, green: g, blue: b, alpha: a };
     }
 
+    const warn = (msg) => {
+        setWarning(msg);
+        setTimeout(() => setWarning(null), 5000);
+    }
+
+    const validateMinMax = (min, max, newValue) => {
+        if (newValue < min) {
+            warn('Value lower than Minimum Value for Field : ' + min);
+
+            return min;
+        }
+        if (newValue > max) {
+            warn('Value Exceeds Maximum Value for Field : ' + max);
+            return max;
+        }
+        return newValue;
+    }
 
     return (
-        <>
-            <div className='rowHeader'>{variable.selector} <SvgArrow /></div>
-            {variable.variables.map((varDef) => {
+        <div className='themeGridRoot'>
+            <div className='rowHeader'>{variable.selector} <SvgArrow
+                up={show}
+                onClick={() => setShow(!show)} /></div>
+            {warning && <p class="warningMsg" >{warning}</p>}
+            {show && variable.variables.map((varDef) => {
                 //variable: key, value: jsonElement.attributes[key]
                 let colorHex = getColorHexCode(varDef.value);
+                let colorRGBA = hexToRgba(colorHex);
                 return (<>
                     <div className='variableName mb-sm'>{varDef.variable}</div>
                     <div className='colorBox mb-sm' >
                         <div className='square'
-                            onClick={(ev) => onClickColor(ev,colorHex)} style={{ backgroundColor: varDef.value }}></div>
+                            onClick={(ev) => onClickColor(ev, colorHex)} style={{ backgroundColor: varDef.value }}></div>
                     </div>
-                    <input type='text' className='hexValue mb-sm' value={colorHex} />
-                    <input type='text' className='rgbaValue mb-sm' value={hexToRgba(colorHex)} />
+                    <div className='hexCodeInputs'>
+                        <label for={varDef.variable + '_hex'}>HexCode</label>
+                        <input id={varDef.variable + "_hex"} type='text' className='hexValue mb-sm hexCodeInput'
+                            maxlength="9" defaultValue={colorHex} />
+                    </div>
+                    <div className='rgbaInputs'>
+                        <label className='rgbaInputField' for={varDef.variable + '_red'}>R</label>
+                        <label className='rgbaInputField' for={varDef.variable + '_green'}>G</label>
+                        <label className='rgbaInputField' for={varDef.variable + '_blue'}>B</label>
+                        <label className='rgbaInputField' for={varDef.variable + '_alpha'}>A</label>
+                        <input type='number' id={varDef.variable + '_red'} className='rgbaValue mb-sm rgbaInputField'
+                            min='0' max='255' defaultValue={colorRGBA.red} />
+                        <input type='number' id={varDef.variable + '_green'} className='rgbaValue mb-sm rgbaInputField'
+                            min='0' max='255' defaultValue={colorRGBA.green} />
+                        <input type='number' id={varDef.variable + '_blue'} className='rgbaValue mb-sm rgbaInputField'
+                            min='0' max='255' defaultValue={colorRGBA.blue} />
+                        <input type='number' id={varDef.variable + '_alpha'} className='rgbaValue mb-sm rgbaInputField'
+                            step='0.01' min='0.00' max='1.00' defaultValue={colorRGBA.alpha}
+                            onChange={(e) => e.target.value = validateMinMax(0.00, 1.00, e.target.value)} />
+                    </div>
                 </>)
             })
             }
-        </>
+        </div>
     )
 
 

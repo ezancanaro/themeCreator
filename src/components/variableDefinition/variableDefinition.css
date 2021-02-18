@@ -1,0 +1,113 @@
+.themeGridRoot{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
+    width: 40%;
+    --gap-size: 0.6em;
+    /* row-gap: var(--gap-size); */
+}
+
+.themeGridRoot *{
+    padding:auto;
+    margin: auto;
+}
+
+svg{
+    stroke: black;
+    width: 1em;
+    height: 1em;
+    float: right;
+}
+
+.rowHeader{
+    grid-column: span 4;
+    text-align: left;
+    padding-left: 2em;
+    border-bottom: 1px solid black;
+    padding-bottom: var(--gap-size);
+    padding-top: var(--gap-size);
+}
+
+.mb-sm{
+    padding-bottom: var(--gap-size);
+    padding-top: var(--gap-size);
+    border-bottom: 1px solid black;
+}
+
+.colorBox{
+    padding: 0;
+    margin: 0;
+}
+
+.square{
+    width: 50%;
+    height: 50%;
+    margin: 0;
+    padding: 0;
+    border: 1px dashed darkorange;
+}
+
+.colorBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    border: 1px dashed red;
+}
+
+.hexCodeInputs{
+ 
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.rgbaInputs{
+    
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0, 1fr));
+}
+
+.hexCodeInput{
+    width: 8em;
+}
+
+.rgbaInputField {
+    width: 3em;
+}
+
+
+
+
+.warningMsg {
+    -webkit-animation: cssAnimation 5s forwards; 
+    animation: cssAnimation 5s forwards;
+    color: var(--error-message-border);
+    margin-bottom: 15px;
+    border: 1px solid var(--error-message-border);
+    padding: 10px;
+    width: 95%;
+    text-align: center;
+    border-radius: 5px;
+    background: var(--error-message-background);
+    position: absolute;
+    top:0;
+    left:0;
+}
+
+
+@keyframes cssAnimation {
+    0%   {opacity: 1;}
+    90%  {opacity: 1;}
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+@-webkit-keyframes cssAnimation {
+    0%   {opacity: 1;}
+    90%  {opacity: 1;}
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}

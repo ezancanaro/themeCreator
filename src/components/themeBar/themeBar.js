@@ -72,12 +72,6 @@ export default function ThemeBar(props) {
         return myVars;
     }
 
-
-
-
-
-
-
     const showColorPicker = (e, colorHexCode) => {
         if (e.pageX == null && e.clientX != null) {
             var doc, body;
@@ -127,14 +121,10 @@ export default function ThemeBar(props) {
                     onChange={(color) => updateColorVariable(color)} />
             </ColorPickerPopup>
             <div id='themeGridRoot'>
-                <div className='rowHeader'>Header</div>
-                <div className='variableName mb-sm'>VarName</div>
-                <div className='colorBox mb-sm'>ColorBox</div>
-                <div className='hexValue mb-sm'>HexValue</div>
-                <div className='rgbaValue mb-sm'>RGbValue</div>
-                {nVars != 0 && variables.map((variableDefinition) => {
+                
+                {nVars != 0 && variables.map((variableDefinition,index) => {
                     console.log('Mapping vars...',nVars);
-                    return <VariableDefinition variable={variableDefinition}
+                    return <VariableDefinition key={'var_'+index} variable={variableDefinition}
                         onClickColor={(ev, colorHex) => showColorPicker(ev, colorHex)}
                     />
                     }

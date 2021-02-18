@@ -12,10 +12,139 @@ html, body {
     color: var(--font-color);
 }
 
-
 #root.darkTheme {
     --background-primary: black;
     --bakcground-secondary: black;
     --font-color: white;
 }
 
+:root {
+    --fundo-header: lightgrey;
+    --fundo-principal: #239041;
+    --fundo-sidebar: #239041;
+    --botao-sidebar-hover: rgb(142, 196, 142);
+    --fonte-primaria: #239041;
+    --fonte-secundaria: white;
+    --botao-primaria: #239041;
+    --botao-secundaria: white;
+    --botao-terciaria: rgb(142, 196, 142);
+    --fonte-hover: white;
+    --listagem-hover: rgb(142, 196, 142);
+    --listagem-primaria: #d5ffdb;
+    --listagem-secundaria: white;
+    --border-primaria: rgb(143, 143, 143);
+    --border-secundaria: #239041;
+    --border-terciaria: white;
+    --error-message-font: #ff3333;
+    --error-message-border: #ff3333;
+    --error-message-background: #eec6c6;
+    --success-message-font: #1a912d;
+    --success-message-border: #1a912d;
+    --success-message-background: #d0f1cc;
+    --modal-close-button-font: darkred;
+    --modal-close-button-border: darkred;
+    --modal-close-button-background: rgb(214, 133, 133);
+    --fonte-textoPadrao: black;
+    --sidebar-scroll-background: rgb(24, 100, 24);
+    --sidebar-scroll-hover: rgb(0, 87, 0);
+    color: var(--fonte-textoPadrao);
+}
+
+.theme-switch__input:checked~* {
+    --fundo-header: rgb(73, 73, 73);
+    --fundo-sidebar: rgb(15, 53, 15);
+    --fundo-principal: rgb(15, 53, 15);
+    --fonte-primaria: rgb(47, 155, 47);
+    --fonte-hover: rgb(143, 142, 142);
+    --listagem-hover: rgb(53, 73, 53);
+    --listagem-primaria: #535353;
+    --listagem-secundaria: rgb(2, 2, 2);
+    --border-primaria: rgb(143, 143, 143);
+    --fonte-textoPadrao: white;
+    --sidebar-scroll-background: rgb(224, 224, 224);
+    --sidebar-scroll-hover: rgb(253, 253, 253);
+    color: var(--fonte-textoPadrao);
+}
+
+input[type="date"], [type="file"] {
+    height: 38px;
+    padding: 6px 10px;
+    background-color: #fff;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    box-shadow: none;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: rgb(109, 109, 109);
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(43, 43, 43);
+}
+
+/* override browser default */
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+/* use viewport-relative units to cover page fully */
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+/* include border and padding in element width and height */
+
+* {
+    box-sizing: border-box;
+}
+
+/* full-sized  container that fills up the page */
+
+#root {
+    height: 100%;
+    width: 100%;
+    /* example padding, font-size, background, etc */
+    /* background-color: lightskyblue; */
+}
+
+.fullHeight {
+    height: 100%;
+    background-color: var(--listagem-primaria);
+}
+
+.icon-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+}
+
+.icone_selecionado {
+    border: 3px solid green;
+    border-radius: 5px;
+    box-sizing: content-box;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.438);
+}
